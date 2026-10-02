@@ -58,6 +58,17 @@ class FFmpegApp:
                         arrowcolor=TEXT_MUTED,
                         bordercolor=BG_PANEL)
 
+        # ========== CONVERT BUTTON (pinned at bottom) ==========
+        # IMPORTANT: packed with side="bottom" BEFORE the expanding content above,
+        # so it always keeps its space at the bottom of the window.
+        self.btn_convert = tk.Button(root, text="🚀  START CONVERSION",
+                                     command=self.start_conversion,
+                                     bg=GREEN, fg="#0a0a0a", font=("Segoe UI", 13, "bold"),
+                                     activebackground=GREEN_HOVER, activeforeground="#0a0a0a",
+                                     bd=0, pady=13, cursor="hand2", state="disabled",
+                                     disabledforeground="#666666")
+        self.btn_convert.pack(side="bottom", fill="x", padx=24, pady=(4, 18))
+
         # ========== HEADER ==========
         header = tk.Frame(root, bg=BG_MAIN)
         header.pack(fill="x", padx=24, pady=(20, 8))
@@ -170,15 +181,6 @@ class FFmpegApp:
                                                   highlightthickness=0, state="disabled",
                                                   insertbackground=TEXT_MAIN)
         self.log_text.pack(fill="both", expand=True, padx=8, pady=8)
-
-        # ========== CONVERT BUTTON (pinned at bottom) ==========
-        self.btn_convert = tk.Button(root, text="🚀  START CONVERSION",
-                                     command=self.start_conversion,
-                                     bg=GREEN, fg="#0a0a0a", font=("Segoe UI", 13, "bold"),
-                                     activebackground=GREEN_HOVER, activeforeground="#0a0a0a",
-                                     bd=0, pady=13, cursor="hand2", state="disabled",
-                                     disabledforeground="#666666")
-        self.btn_convert.pack(side="bottom", fill="x", padx=24, pady=(4, 18))
 
     # ---------- Button helper with hover effect ----------
     def _make_button(self, parent, text, command, color, hover=None):
